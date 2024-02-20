@@ -1,0 +1,222 @@
+@import url("https://fonts.googleapis.com/css2?family=Martian+Mono:wght@100..800&display=swap");
+// ====================== body ====================== //
+
+$color_1: var(--text-color);
+$color_2: inherit;
+$color_3: #999;
+$background-color_1: var(--background-color);
+$background-color_2: var(--elements-color);
+$background-color_3: inherit;
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html {
+	scroll-behavior: smooth;
+}
+body {
+	font-family: "Martian Mono", monospace !important;
+	font-size: 12px;
+	--background-color: white;
+	--text-color: black;
+	--elements-color: white;
+	margin: 0;
+	background-color: $background-color_1;
+	color: $color_1;
+}
+
+input,
+button,
+textarea,
+label {
+	font-family: "Martian Mono", monospace !important;
+}
+
+body.dark {
+	--background-color: hsl(207, 26%, 17%);
+	--text-color: white;
+	--elements-color: hsl(209, 23%, 22%);
+}
+// ====================== body ====================== //
+main {
+	padding: 24px;
+}
+a {
+	text-decoration-line: none;
+	color: $color_2;
+}
+.header-container {
+	box-shadow: 0 2px 4px 0px rgba(0, 0, 0, 0.1);
+	padding-inline: 24px;
+	background-color: $background-color_2;
+}
+.header-content {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	max-width: 1200px;
+	height: 80px;
+	margin-inline: auto;
+}
+.title {
+	font-weight: 800;
+}
+.theme-changer {
+	cursor: pointer;
+	border: none;
+	border-radius: 4px;
+	padding: 8px 14px;
+}
+.countries-container {
+	max-width: 1200px;
+	margin-top: 16px;
+	display: flex;
+	gap: 64px;
+	flex-wrap: wrap;
+	margin-inline: auto;
+	justify-content: space-between;
+}
+.country-card {
+	display: inline-block;
+	width: 250px;
+	border-radius: 8px;
+	overflow: hidden;
+	padding-bottom: 24px;
+	box-shadow: 0 0 8px 0px rgba(0, 0, 0, 0.2);
+	transition: all 0.2s ease-in-out;
+	background-color: $background-color_2;
+	&:hover {
+		transform: scale(1.03);
+		box-shadow: 0 0 16px 0px rgba(0, 0, 0, 0.2);
+	}
+	img {
+		width: 100%;
+		height: 180px;
+		object-fit: cover;
+	}
+}
+.card-title {
+	font-size: 24px;
+	margin-block: 16px;
+}
+.card-text {
+	padding-inline: 16px;
+	p {
+		margin-block: 8px;
+	}
+}
+.search-filter-container {
+	max-width: 1200px;
+	margin-inline: auto;
+	margin-top: 16px;
+	margin-bottom: 48px;
+	display: flex;
+	justify-content: space-between;
+	gap: 24px;
+}
+.search-container {
+	box-shadow: 0 0 8px 0px rgba(0, 0, 0, 0.15);
+	max-width: 350px;
+	width: 100%;
+	border-radius: 4px;
+	padding-left: 24px;
+	color: $color_3;
+	overflow: hidden;
+	background-color: $background-color_2;
+	color: $color_1;
+	input {
+		border: none;
+		outline: none;
+		padding: 16px;
+		width: 90%;
+		background-color: $background-color_3;
+		color: $color_2;
+		&::placeholder {
+			color: $color_3;
+		}
+	}
+}
+.filter-by-region {
+	width: 250px;
+	padding: 16px;
+	border: none;
+	outline: none;
+	box-shadow: 0 0 8px 0px rgba(0, 0, 0, 0.15);
+	border-radius: 4px;
+	background-color: $background-color_2;
+	color: $color_1;
+}
+@media (max-width: 768px) {
+	.countries-container {
+		justify-content: center;
+	}
+	.title {
+		font-size: 16px;
+	}
+	.header-content {
+		p {
+			font-size: 12px;
+		}
+	}
+	.search-filter-container {
+		flex-direction: column;
+	}
+	.country-card {
+		width: 100%;
+	}
+	.filter-by-region {
+		width: 100%;
+	}
+
+	.country-card-ul {
+		margin: 6px;
+		border-radius: 50%;
+		border: 2px solid black;
+		.page-link {
+			font-size: 63px;
+			transition: all 0.4s;
+
+			&:hover {
+				background-color: aquamarine;
+				border-color: aquamarine;
+				transform: scale(1.4);
+				color: red;
+			}
+		}
+	}
+}
+
+.country-card-ul {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+	list-style: none;
+	width: 100%;
+
+	.page-item {
+		margin: 6px;
+		.page-link {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			padding: 5px;
+			border-radius: 50%;
+			border: 2px solid black;
+			width: 40px;
+			height: 40px;
+			font-size: 23px;
+			transition: all 0.4s;
+
+			&:hover {
+				background-color: aquamarine;
+				border-color: aquamarine;
+				transform: scale(1.4);
+				color: red;
+			}
+		}
+	}
+}
