@@ -14,6 +14,9 @@
 		/>
 	</head>
 	<body>
+		<button class="back-to-top">
+			<span><img src="assets/images/backtop.svg" alt="assets" /></span>
+		</button>
 		<header class="header-container">
 			<div class="header-content">
 				<h2 class="title"><a href="/">Where in the world?</a></h2>
@@ -44,5 +47,28 @@
 		<script src="assets/js/main.js"></script>
 		<!-- <script src="assets/js/count.js"></script>/ -->
 		<script src="assets/js/app.js"></script>
+
+		<script>
+			// Tugmani tanlash
+			const backToTopButton = document.querySelector(".back-to-top");
+
+			// Tugmani ochish uchun funksiya
+			function scrollFunction() {
+				if (window.scrollY > 20) {
+					backToTopButton.classList.add("show");
+				} else {
+					backToTopButton.classList.remove("show");
+				}
+			}
+
+			// Yuqoriga qaytish uchun funksiya
+			function backToTop() {
+				window.scrollTo({ top: 0, behavior: "smooth" });
+			}
+
+			// Tugmani ko'rsatish
+			window.addEventListener("scroll", scrollFunction());
+			backToTopButton.addEventListener("click", backToTop());
+		</script>
 	</body>
 </html>

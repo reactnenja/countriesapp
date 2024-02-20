@@ -32,3 +32,24 @@ window.addEventListener("click", function (event) {
 		});
 	}
 });
+// Tugmani tanlash
+const backToTopButton = document.querySelector(".back-to-top");
+
+// Tugmani ochish uchun funksiya
+function scrollFunction() {
+	if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+		backToTopButton.classList.add("show");
+	} else {
+		backToTopButton.classList.remove("show");
+	}
+}
+
+// Yuqoriga qaytish uchun funksiya
+function backToTop() {
+	document.body.scrollTop = 0;
+	document.documentElement.scrollTop = 0;
+}
+
+// Tugmani ko'rsatish
+window.addEventListener("scroll", scrollFunction);
+backToTopButton.addEventListener("click", backToTop);
