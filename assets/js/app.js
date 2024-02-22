@@ -1,8 +1,8 @@
 let countriesContainer = document.querySelector(".countries-container");
 let countriesContainerUl = document.querySelector(".page-ul");
 const filterByRegion = document.querySelector(".filter-by-region") || "Aisa";
+const filterByPopulation = document.querySelector(".filter-by-population");
 const searchInput = document.querySelector(".search-container input");
-const themeChanger = document.querySelector(".theme-changer");
 let allCountriesData;
 let params;
 let newdata = [
@@ -25,11 +25,11 @@ fetch("https://restcountries.com/v3.1/all")
 	});
 
 function getParams() {
-	var idx = document.URL.indexOf("?");
-	var params = new Array();
+	let idx = document.URL.indexOf("?");
+	let params = new Array();
 	if (idx != -1) {
-		var pairs = document.URL.substring(idx + 1, document.URL.length).split("&");
-		for (var i = 0; i < pairs.length; i++) {
+		let pairs = document.URL.substring(idx + 1, document.URL.length).split("&");
+		for (let i = 0; i < pairs.length; i++) {
 			nameVal = pairs[i].split("=");
 			params.push(nameVal[1]);
 		}
@@ -58,7 +58,7 @@ function renderCountries(data) {
           <img src="${country.flags.svg}" alt="${country.name.common} flag" />
           <div class="card-text">
               <h3 class="card-title">${country.name.common}</h3>
-              <p><b>Population: </b>${country.population.toLocaleString("en-IN")}</p>
+              <p><b>Population: </b>${country.population.toLocaleString("ru-RU")}</p>
               <p><b>Region: </b>${country.region}</p>
               <p><b>Capital: </b>${country.capital?.[0]}</p>
           </div>
@@ -97,15 +97,6 @@ searchInput.addEventListener("input", e => {
 	});
 });
 
-themeChanger.addEventListener("click", function () {
-	if (document.body.className != "dark") {
-		this.firstElementChild.src = "assets/images/light.svg";
-	} else {
-		this.firstElementChild.src = "assets/images/mode.svg";
-	}
-	document.body.classList.toggle("dark");
-});
-
 function fetchData(data) {
 	let newdata = [
 		1,
@@ -127,7 +118,7 @@ function fetchData(data) {
           <img src="${country.flags.svg}" alt="${country.name.common} flag" />
           <div class="card-text">
               <h3 class="card-title">${country.name.common}</h3>
-              <p><b>Population: </b>${country.population.toLocaleString("en-IN")}</p>
+              <p><b>Population: </b>${country.population.toLocaleString("ru-RU")}</p>
               <p><b>Region: </b>${country.region}</p>
               <p><b>Capital: </b>${country.capital?.[0]}</p>
           </div>
@@ -145,4 +136,71 @@ function fetchData(data) {
 }
 function paginate(array, page_size, page_number) {
 	return array.slice((page_number - 1) * page_size, page_number * page_size);
+}
+
+const loading = document.getElementById("loadings-time");
+const loadingDuration = 1400;
+setTimeout(() => {
+	loading.classList.add("none"); // "none" ni string ko'rinishida yozing
+	// document.body.style.scrollBehavior = "none";
+}, loadingDuration);
+
+let filterByReg = document.querySelector(".filter-by-region-sort");
+let api = "https://countries-restapi.vercel.app/all";
+
+let fetchDatasort = async api => {
+	try {
+		const result = await fetch(api);
+		const data = await result.json();
+		filters(data?.data);
+	} catch (error) {
+		console.log(error);
+	}
+};
+fetchDatasort(api);
+
+function filters(data) {
+	console.log(data);
+	filterByReg.addEventListener("change", e => {
+		let value = e.target.value;
+		countMis = 0;
+		countMus = 16;
+		if (value === "population") {
+			data.sort((a, b) => b?.population - a?.population);
+		}
+		if (value === "all") {
+			fetchDatasort(api);
+		}
+		if (value === "region") {
+			data.sort((a, b) => {
+				let regionA = a.region.toLowerCase();
+				let regionB = b.region.toLowerCase();
+				if (regionA < regionB) {
+					return -1;
+				}
+			});
+		}
+		if (value === "capital") {
+			data.sort((a, b) => {
+				let capitalA =
+					Array.isArray(a.capital) && a.capital.length > 0 ? a.capital[0].toLowerCase() : "";
+				let capitalB =
+					Array.isArray(b.capital) && b.capital.length > 0 ? b.capital[0].toLowerCase() : "";
+				if (capitalA < capitalB) {
+					return -1;
+				}
+			});
+		}
+		if (value === "title") {
+			data.sort((a, b) => {
+				let regionA = a.name?.common?.toLowerCase();
+				let regionB = b.name?.common?.toLowerCase();
+				if (regionA < regionB) {
+					return -1;
+				}
+			});
+		}
+
+		fetchData(data);
+	});
 }

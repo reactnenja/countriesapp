@@ -20,15 +20,18 @@
 		<link rel="stylesheet" href="assets/css/count.min.css" />
 	</head>
 	<body>
+		<div class="loaders-main" id="loadings-time">
+			<span class="loader"></span>
+		</div>
 		<header class="header-container">
 			<div class="header-content">
 				<h2 class="title"><a href="/">Where in the world?</a></h2>
 				<button class="theme-changer">
-					<i class="fa-regular fa-moon"></i>&nbsp;&nbsp;Dark Mode
+					<img src="assets/images/mode.svg" alt="" />
 				</button>
 			</div>
 		</header>
-		<main>
+		<main class="count-main">
 			<div class="country-details-container">
 				<span class="back-button" onclick="history.back()">
 					<i class="fa-solid fa-arrow-left"></i>&nbsp; Back
@@ -53,7 +56,15 @@
 			</div>
 		</main>
 		<script src="assets/js/count.js" defer></script>
-		<!-- <script src="assets/js/main.js"></script> -->
+		<script src="assets/js/main.js"></script>
 		<!-- <script src="assets/js/app.js"></script> -->
+		<script>
+			const loading = document.getElementById("loadings-time");
+			const loadingDuration = 1400;
+			setTimeout(() => {
+				loading.classList.add("none"); // "none" ni string ko'rinishida yozing
+				// document.body.style.scrollBehavior = "none";
+			}, loadingDuration);
+		</script>
 	</body>
 </html>

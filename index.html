@@ -14,6 +14,10 @@
 		/>
 	</head>
 	<body>
+		<div class="loaders-main" id="loadings-time">
+			<span class="loader"></span>
+		</div>
+
 		<button class="back-to-top">
 			<span><img src="assets/images/backtop.svg" alt="assets" /></span>
 		</button>
@@ -31,6 +35,15 @@
 					<i class="fa-solid fa-magnifying-glass"></i>
 					<input type="text" placeholder="Search for a country..." />
 				</div>
+
+				<select class="filter-by-region-sort">
+					<option value="all">Sort</option>
+					<option value="population">Population</option>
+					<option value="region">Region</option>
+					<option value="capital">Capital</option>
+					<option value="title">Title</option>
+				</select>
+
 				<select class="filter-by-region">
 					<option hidden>Filter by Region</option>
 					<option value="Africa">Africa</option>
@@ -45,7 +58,8 @@
 			</div>
 		</main>
 		<script src="assets/js/main.js"></script>
-		<!-- <script src="assets/js/count.js"></script>/ -->
+		<!-- <script src="assets/js/count.js"></script> -->
+		/
 		<script src="assets/js/app.js"></script>
 
 		<script>
@@ -69,6 +83,8 @@
 			// Tugmani ko'rsatish
 			window.addEventListener("scroll", scrollFunction());
 			backToTopButton.addEventListener("click", backToTop());
+
+			// theme
 		</script>
 	</body>
 </html>
