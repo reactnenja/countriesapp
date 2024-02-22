@@ -142,7 +142,7 @@ a {
 
 .title {
   font-weight: 800;
-  font-size: 36px;
+  font-size: 32px;
 }
 
 .theme-changer {
@@ -231,6 +231,10 @@ a {
   background-color: var(--elements-color);
   color: var(--text-color);
 }
+.search-container .fa-magnifying-glass {
+  font-size: 18px;
+  color: rgba(0, 0, 0, 0.2);
+}
 .search-container input {
   border: none;
   outline: none;
@@ -253,6 +257,9 @@ a {
 }
 .search-container input::placeholder {
   color: #999;
+}
+.search-container input:focus {
+  background-color: inherit;
 }
 
 .filter-by-region-sort {

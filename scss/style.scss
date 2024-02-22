@@ -114,7 +114,7 @@ a {
 }
 .title {
 	font-weight: 800;
-	font-size: 36px;
+	font-size: 32px;
 }
 .theme-changer {
 	cursor: pointer;
@@ -180,6 +180,10 @@ a {
 	overflow: hidden;
 	background-color: $background-color_2;
 	color: $color_1;
+	.fa-magnifying-glass {
+		font-size: 18px;
+		color: rgba(0, 0, 0, 0.2);
+	}
 	input {
 		border: none;
 		outline: none;
@@ -189,6 +193,9 @@ a {
 		color: $color_2;
 		&::placeholder {
 			color: $color_3;
+		}
+		&:focus {
+			background-color: $background-color_3;
 		}
 	}
 }
